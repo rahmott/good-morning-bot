@@ -1,0 +1,25 @@
+name: Daily Good Morning
+
+on:
+  schedule:
+    - cron: '0 1 * * *' # BD time 7AM (UTC 1AM)
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run bot
+      run: node index.js
